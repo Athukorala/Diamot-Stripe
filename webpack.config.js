@@ -19,7 +19,13 @@ module.exports = {
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
-                exclude: /node_modules/
+                exclude: /node_modules/,
+                options: {
+                    plugins: [
+                        'dynamic-import-webpack',
+                        'remove-webpack'
+                    ]
+                }
             },
             {
                 test: /\.html$/,
@@ -33,7 +39,7 @@ module.exports = {
                 test: /\.css$/,
                 exclude: /node_modules/,
                 use: [
-                    { loader: 'style-loader' },
+                    {loader: 'style-loader'},
                     {
                         loader: 'css-loader',
                         options: {
@@ -64,11 +70,15 @@ module.exports = {
             }
         ]
     },
+    devServer: {
+        historyApiFallback: true,
+    },
     plugins: [
         new HtmlWebpackPlugin({
             template: __dirname + '/src/index.html',
             filename: 'index.html',
             inject: 'body'
-        })
+        }),
+
     ]
 };
