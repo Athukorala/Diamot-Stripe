@@ -1,28 +1,45 @@
 import React, {Component} from 'react';
 import axiosStripe from "../axios/axios-stripe";
-import axiosUser from "../axios/axios-user";
+import querySting from 'query-string';
 
 class Connect extends Component {
 
+    state = {
+        code: '',
+        backendData:''
+    };
+
     componentDidMount() {
+        
+        // get querystring data 
+
+        const parsed = querySting.parse(location.search);
+
         console.log("connecting....");
 
-        const obj = {
-            client_secret: 'sk_live_Q4SmeEtJhNW1yBLItPmjEbiM',
-            grant_type: 'authorization_code',
-            code: ''
-
+        const obj = {            
+            code: parsed.code
         };
 
+        this.setState({
+            code:parsed.code
+        });
+
+        console.log("code: "+parsed.code);
+
+        // send data to backend 
+        
         axiosStripe.post(obj)
             .then(response => {
                 if (response.data) {
-                    axiosUser.post(response.data)
-                        .then(response => {
-                        })
 
-                        .catch(error => {
-                        });
+                    this.setState({
+                        backendData:response.data
+                    });
+
+                    this.props.history.push('/');
+                    window.location.reload();
+
                 }
             })
 
@@ -39,6 +56,9 @@ class Connect extends Component {
         return (
             <div>
                 <h5>Connecting...</h5>
+                <br/>
+                <h6>Code : {this.state.code}</h6>
+                <h6>Backend Data : {this.state.backendData}</h6>
             </div>
         )
     }

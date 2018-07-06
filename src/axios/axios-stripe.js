@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 const instance=axios.create({
-    baseURL:'https://connect.stripe.com/oauth/token/'
+    baseURL:'/Stripe/Connect/'
 
 })
 

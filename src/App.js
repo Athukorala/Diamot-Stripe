@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import { Router, Route, Link, IndexRoute, hashHistory, browserHistory,Switch } from 'react-router'
 import asyncComponent from "./hoc/asyncComponent/asyncComponent";
-import Eux from "./hoc/Eux/Eux";
+
 
 let client_id = "ca_DAOZ88GVYbv2TohpCHznZ5ip0FqzsIP7";
 let redirect_uri = "https://diamot-stripetest.azurewebsites.net";
 
-let href = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_D1d33vDFNoQPpaPSNY0b8cwN4RA1BYnl&scope=read_write";
+// let href = "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_D1d33vDFNoQPpaPSNY0b8cwN4RA1BYnl&scope=read_write";
 
 
 const stripePay = asyncComponent(() => {
@@ -15,6 +15,8 @@ const stripePay = asyncComponent(() => {
 
 
 class App extends Component {
+
+
     render() {
 
         return (
