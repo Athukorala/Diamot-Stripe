@@ -29,7 +29,7 @@ class Connect extends Component {
 
         // send data to backend 
         
-        axiosStripe.post(obj)
+        axiosStripe.get(`Connect?code=` + parsed.code)
             .then(response => {
                 if (response.data) {
 
@@ -37,8 +37,8 @@ class Connect extends Component {
                         backendData:response.data
                     });
 
-                    this.props.history.push('/');
-                    window.location.reload();
+                    // this.props.history.push('/');
+                    // window.location.reload();
 
                 }
             })

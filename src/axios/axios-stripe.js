@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 const instance=axios.create({
-    baseURL:'/Stripe/Connect/'
+    baseURL:'/Stripe/'
 
 })
 
